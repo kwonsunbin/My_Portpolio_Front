@@ -52,7 +52,7 @@ export default function BasicTable(props) {
   useEffect(() => {
     const remove = async () => {
       await axios.delete(
-        `http://localhost:8000/api/v1/coins/${removeValues.ticker}`
+        `http://${process.env.BACK_IP}:8000/api/v1/coins/${removeValues.ticker}`
       );
     };
     if (removeValues.ticker !== '') {
@@ -159,7 +159,7 @@ export default function BasicTable(props) {
                 variant="contained"
                 className={classes.button}
                 onClick={async () => {
-                  await axios.post(`http://localhost:8000/api/v1/coins/`, {
+                  await axios.post(`http:/${process.env.BACK_IP}:8000/api/v1/coins/`, {
                     name: values.name,
                     ticker: values.ticker,
                     count: values.count,

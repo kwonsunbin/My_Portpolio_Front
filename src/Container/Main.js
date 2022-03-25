@@ -41,11 +41,11 @@ function Main() {
 
   useEffect(() => {
     const get = async () => {
-      const result = await axios.get(`http://localhost:8000/api/v1/coins/`);
+      const result = await axios.get(`http://${process.env.BACK_IP}:8000/api/v1/coins/`);
       setData(result.data.data);
     };
     const updatePrices = async () => {
-      await axios.put(`http://localhost:8000/api/v1/coins/`);
+      await axios.put(`http://${process.env.BACK_IP}:8000/api/v1/coins/`);
     };
     if (update) {
       updatePrices();
