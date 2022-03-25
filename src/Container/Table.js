@@ -14,6 +14,7 @@ import axios from 'axios';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import * as config from '../config/config'
 
 function createTableData(name, ticker, price, count, haveInUSD) {
   return { name, ticker, price, count, haveInUSD };
@@ -52,7 +53,7 @@ export default function BasicTable(props) {
   useEffect(() => {
     const remove = async () => {
       await axios.delete(
-        `http://${process.env.BACK_IP}:8000/api/v1/coins/${removeValues.ticker}`
+        `${config.BASE_URL}${removeValues.ticker}`
       );
     };
     if (removeValues.ticker !== '') {
@@ -159,7 +160,7 @@ export default function BasicTable(props) {
                 variant="contained"
                 className={classes.button}
                 onClick={async () => {
-                  await axios.post(`http:/${process.env.BACK_IP}:8000/api/v1/coins/`, {
+                  await axios.post(`${config.BASE_URL}`, {
                     name: values.name,
                     ticker: values.ticker,
                     count: values.count,

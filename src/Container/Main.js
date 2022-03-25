@@ -9,6 +9,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import Paper from '@mui/material/Paper';
+import * as config from '../config/config'
 
 const darkTheme = createTheme({
   palette: {
@@ -41,11 +42,11 @@ function Main() {
 
   useEffect(() => {
     const get = async () => {
-      const result = await axios.get(`http://${process.env.BACK_IP}:8000/api/v1/coins/`);
+      const result = await axios.get(`${config.BASE_URL}`);
       setData(result.data.data);
     };
     const updatePrices = async () => {
-      await axios.put(`http://${process.env.BACK_IP}:8000/api/v1/coins/`);
+      await axios.put(`${config.BASE_URL}`);
     };
     if (update) {
       updatePrices();
